@@ -16,7 +16,7 @@ r = pozice[3]
 vyska_kostka =-45
 posun = 60
 device.suck(False)
-i = 0
+i = -1
 while True:
     if i < 4:
         i+=1
