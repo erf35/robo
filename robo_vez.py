@@ -1,4 +1,4 @@
-import pydobot as bot
+
 from serial.tools import list_ports
 
 import pydobot
