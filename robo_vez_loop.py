@@ -18,7 +18,7 @@ posun = 60
 device.suck(False)
 i = -1
 while True:
-    if i < 4:
+    if i < 3:
         i+=1
     else:
         i = 0
