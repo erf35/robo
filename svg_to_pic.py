@@ -37,7 +37,7 @@ def svg_to_points(svg_path, step=10, decimals=2):
                 round(point.imag, decimals)
             ])
             
-    return float(points)
+    return points
 
 available_ports = list_ports.comports()
 print(f'available ports: {[x.device for x in available_ports]}')
@@ -59,6 +59,6 @@ points = svg_to_points(svg_file)
 for point in points:
     device.move_to(x+float(point[0]), y+float(point[1]), -50, r, True)
     delay = 0.1  # Adjust this delay as needed
-    print(point[0], point[1])
+    print(float(point[0]), float(point[1]))
 
 device.close()
