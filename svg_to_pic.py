@@ -40,6 +40,11 @@ print(f'available ports: {[x.device for x in available_ports]}')
 port = available_ports[1].device
 
 device = bot.Dobot(port=port, verbose=True)
+pozice = device.pose()
+x = pozice[0]
+y = pozice[1]
+z = pozice[2]
+r = pozice[3]
 
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -47,3 +52,11 @@ svg_file = os.path.join(script_dir, 'a.svg')
 points = svg_to_points(svg_file)
 
 print(points)
+
+for point in points:
+    device.move_to(x+float(point[0]), y+float(point[1]), -50, r, True)
+    delay = 0.1  # Adjust this delay as needed
+    print(point[0], point[1])
+
+
+device.close()
