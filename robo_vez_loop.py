@@ -23,15 +23,16 @@ while True:
     else:
         i = 0
     pocet_kostek_z  = i * 30
-    pocet_kostek_x = i
-    device.move_to(x+pocet_kostek_x,y+pocet_kostek_z,vyska_kostka,r,True)
+    pocet_kostek_x = i*10
+    pocet_kostek_y = i*30
+    device.move_to(x+pocet_kostek_x,y+pocet_kostek_y,vyska_kostka,r,True)
     device.suck(True)
     device.move_to(x,y,vyska_kostka+pocet_kostek_z+10,r,True)
     device.move_to(x+posun,y,vyska_kostka+pocet_kostek_z+10,r,True)
     device.move_to(x+posun,y,vyska_kostka+pocet_kostek_z,r,True)
     device.suck(False)
     device.move_to(x+posun,y,vyska_kostka+pocet_kostek_z+10,r,True)
-    device.move_to(x,y,vyska_kostka+pocet_kostek_z,r,True)
+    device.move_to(x+pocet_kostek_x,y+pocet_kostek_y,vyska_kostka+pocet_kostek_z,r,True)
     print(i)
 
 device.close()
