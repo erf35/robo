@@ -13,7 +13,7 @@ x = pozice[0]
 y = pozice[1]
 z = pozice[2]
 r = pozice[3]
-vyska_kostka =-45
+vyska_kostka =-50
 posun = 60
 device.suck(False)
 i = -1
