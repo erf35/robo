@@ -5,13 +5,14 @@ import svgpathtools
 import pydobot as bot
 from serial.tools import list_ports
 
-def svg_to_points(svg_path, step=10):
+def svg_to_points(svg_path, step=10, decimals=2):
     """
     Converts an SVG file into a list of (x, y) points.
     
     Args:
         svg_path: Path to the SVG file
         step: Distance between points (lower = more detailed)
+        decimals: Number of decimal places for output coordinates
         
     Returns:
         List of (x, y) lists/tuples
@@ -31,9 +32,12 @@ def svg_to_points(svg_path, step=10):
         for i in range(num_steps + 1):
             t = i / num_steps
             point = path.point(t)
-            points.append([point.real, point.imag])
+            points.append([
+                round(point.real, decimals),
+                round(point.imag, decimals)
+            ])
             
-    return points
+    return float(points)
 
 available_ports = list_ports.comports()
 print(f'available ports: {[x.device for x in available_ports]}')
@@ -51,12 +55,10 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 svg_file = os.path.join(script_dir, 'a.svg')
 points = svg_to_points(svg_file)
 
-print(points)
 
 for point in points:
     device.move_to(x+float(point[0]), y+float(point[1]), -50, r, True)
     delay = 0.1  # Adjust this delay as needed
     print(point[0], point[1])
-
 
 device.close()
