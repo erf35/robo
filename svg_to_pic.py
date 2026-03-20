@@ -2,8 +2,8 @@
 #from serial.tools import list_ports
 import os
 import svgpathtools
-
-
+import pydobot as bot
+from serial.tools import list_ports
 
 def svg_to_points(svg_path, step=10):
     """
