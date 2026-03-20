@@ -32,7 +32,7 @@ while True:
     device.move_to(x+posun,y,vyska_kostka+pocet_kostek_z,r,True)
     device.suck(False)
     device.move_to(x+posun,y,vyska_kostka+pocet_kostek_z+10,r,True)
-    device.move_to(x,y,vyska_kostka+pocet_kostek_z,r,True)
+    device.move_to(x+pocet_kostek_x,y+pocet_kostek_y,vyska_kostka+pocet_kostek_z,r,True)
     print(i)
 
 device.close()
