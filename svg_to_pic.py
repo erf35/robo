@@ -5,7 +5,7 @@ import svgpathtools
 import pydobot as bot
 from serial.tools import list_ports
 
-def svg_to_points(svg_path, step=10, decimals=2):
+def svg_to_points(svg_path, step=1, decimals=2):
     """
     Converts an SVG file into a list of (x, y) points.
     
@@ -33,8 +33,8 @@ def svg_to_points(svg_path, step=10, decimals=2):
             t = i / num_steps
             point = path.point(t)
             points.append([
-                round(point.real, decimals),
-                round(point.imag, decimals)
+                point.real,
+                point.imag
             ])
             
     return points
@@ -52,12 +52,12 @@ r = pozice[3]
 
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-svg_file = os.path.join(script_dir, 'a.svg')
+svg_file = os.path.join(script_dir, 'a.svg')  # Replace with your SVG file name
 points = svg_to_points(svg_file)
 
 
 for point in points:
-    device.move_to(x+float(point[0]), y+float(point[1]), -50, r, True)
+    device.move_to(x+float(point[0]), y+float(point[1]), -65, r, True)
     delay = 0.1  # Adjust this delay as needed
     print(float(point[0]), float(point[1]))
 
