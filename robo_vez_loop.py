@@ -37,7 +37,7 @@ while True:
             flag = 1
     else:
 
-
+            # reverse loop goes here
 
         i-=1
         if i == 0:
