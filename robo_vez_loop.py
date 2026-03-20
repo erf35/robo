@@ -35,4 +35,5 @@ while True:
     device.move_to(x+pocet_kostek_x,y,vyska_kostka+pocet_kostek_z,r,True)
     print(i)
 
-device.close()
+
+
