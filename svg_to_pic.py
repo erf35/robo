@@ -35,13 +35,15 @@ def svg_to_points(svg_path, step=10):
             
     return points
 
-#available_ports = list_ports.comports()
-#print(f'available ports: {[x.device for x in available_ports]}')
-#port = available_ports[1].device
+available_ports = list_ports.comports()
+print(f'available ports: {[x.device for x in available_ports]}')
+port = available_ports[1].device
 
-#device = bot.Dobot(port=port, verbose=True)
+device = bot.Dobot(port=port, verbose=True)
 
-svg_file = 'a.svg'
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+svg_file = os.path.join(script_dir, 'a.svg')
 points = svg_to_points(svg_file)
 
 print(points)
