@@ -34,6 +34,6 @@ while True:
         device.move_to(x,y,z+z_mov,r,True)
         i+=1
         if i == 4:
-            i=0
+            break
 
 device.close()
