@@ -13,7 +13,7 @@ x = pozice[0]
 y = pozice[1]
 z = pozice[2]
 r = pozice[3]
-vyska_kostka =-50
+vyska_kostka =-47
 posun = 60
 device.suck(False)
 i = -1
@@ -22,12 +22,13 @@ while True:
         i+=1
     else:
         i = 0
-    pocet_kostek  = i * 30
-    device.move_to(x,y+pocet_kostek,vyska_kostka,r,True)
+    pocet_kostek_y  = i * 30
+    pocet_kostek_x = i
+    device.move_to(x+pocet_kostek_x,y+pocet_kostek_y,vyska_kostka,r,True)
     device.suck(True)
     device.move_to(x,y,z,r,True)
+    device.move_to(x+posun,y,vyska_kostka+pocet_kostek_y,r,True)
     device.move_to(x+posun,y,z,r,True)
-    device.move_to(x+posun,y,vyska_kostka+pocet_kostek,r,True)
     device.suck(False)
     device.move_to(x+posun,y,z,r,True)
     device.move_to(x,y,z,r,True)
