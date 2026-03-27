@@ -20,7 +20,7 @@ i = 0
 flag = 0
 while True:
     pocet_kostek  = i * 30
-    x_adjst = i*5
+    x_adjst = i*4
     y_adjst = i*4
     z_mov = 100
     if flag == 0:
@@ -36,7 +36,7 @@ while True:
         if i == 4:
             flag = 1
     else:
-
+        break
             # reverse loop goes here
 
         i-=1
