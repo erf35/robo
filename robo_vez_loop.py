@@ -19,7 +19,7 @@ device.suck(False)
 i = 0
 flag = 0
 while True:
-    pocet_kostek  = i * 30
+    pocet_kostek  = i * 29
     x_adjst = i*4
     y_adjst = i*4
     z_mov = 100
@@ -36,6 +36,7 @@ while True:
         if i == 4:
             flag = 1
     else:
+        i-=1
         device.move_to(x+posun,y,z+z_mov,r,True)
         device.move_to(x+posun,y,vyska_kostka+pocet_kostek,r,True)
         device.suck(True)
@@ -44,7 +45,7 @@ while True:
         device.move_to(x-x_adjst,y+pocet_kostek-y_adjst,vyska_kostka,r,True)
         device.suck(False)
 
-        i-=1
+        
         if i == 0:
             flag = 0
 
