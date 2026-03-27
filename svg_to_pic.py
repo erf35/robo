@@ -24,6 +24,7 @@ def svg_to_points(svg_path, step=10, decimals=2):
         length = path.length()
         if length == 0:
             continue
+        path_points = []
             
         num_steps = int(length / step)
         if num_steps == 0:
@@ -32,15 +33,17 @@ def svg_to_points(svg_path, step=10, decimals=2):
         for i in range(num_steps + 1):
             t = i / num_steps
             point = path.point(t)
-            points.append([
+            path_points.append([
                 round(point.real, decimals),
                 round(point.imag, decimals)
             ])
+        points.append(path_points)
             
     return points
 
 available_ports = list_ports.comports()
 print(f'available ports: {[x.device for x in available_ports]}')
+
 port = available_ports[1].device
 
 device = bot.Dobot(port=port, verbose=True)
@@ -55,10 +58,21 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 svg_file = os.path.join(script_dir, 'a.svg')
 points = svg_to_points(svg_file)
 
+draw_z = -50
+travel_z = draw_z + 20
 
-for point in points:
-    device.move_to(x+float(point[0]), y+float(point[1]), -50, r, True)
-    delay = 0.1  # Adjust this delay as needed
-    print(float(point[0]), float(point[1]))
+for path_points in points:
+    if not path_points:
+        continue
+
+    # Lift the tool before moving to a disconnected path.
+    start_point = path_points[0]
+    device.move_to(x+float(start_point[0]), y+float(start_point[1]), travel_z, r, True)
+    device.move_to(x+float(start_point[0]), y+float(start_point[1]), draw_z, r, True)
+    print(float(start_point[0]), float(start_point[1]))
+
+    for point in path_points[1:]:
+        device.move_to(x+float(point[0]), y+float(point[1]), draw_z, r, True)
+        print(float(point[0]), float(point[1]))
 
 device.close()
